@@ -106,7 +106,7 @@ function App() {
                 </Form.Field>
                 <Form.Group>
                     <Form.Field>
-                        <label>From Date</label>
+                        <label>Start Date</label>
                         <ReactDatez
                             name="dateInput"
                             handleChange={(value) => setFromDate(moment(value).format("YYYY-MM-DD"))}
@@ -119,7 +119,7 @@ function App() {
                         />
                     </Form.Field>
                     <Form.Field>
-                        <label>From Date</label>
+                        <label>End Date</label>
                         <ReactDatez
                             name="dateInput"
                             handleChange={(value) => setFromDate(moment(value).format("YYYY-MM-DD"))}
@@ -131,9 +131,37 @@ function App() {
                             endDate={"2021-10-26"}
                         />
                     </Form.Field>
-                </Form.Group>
+              
+                    <Form.Field>
+                        <label> From Hours</label>
+                        <Dropdown  
+                            
+                                label='Hours'
+                                placeholder='Hours'
+                                fluid multiple selection
+                                options={optionshours} />
+
+                        </Form.Field>
+                     
+
+ 
+                            <Form.Field>
+                            <label> To Hours</label>
+                            <Dropdown  
+                                
+                                    label='Hours'
+                                    placeholder='Hours'
+                                    fluid multiple selection
+                                    options={optionshours} />
+
+                        </Form.Field>
+                        </Form.Group>
+
+
+
                 <Form.Group>
                     <Form.Field>
+                     <label> Metric</label>
                         <Dropdown placeholder='Metric Code'
                         fluid
                         selection
@@ -143,16 +171,35 @@ function App() {
                             setMetricCode(data.value)
                         }} />
                     </Form.Field>
+                    
+                    <Form.Field>
+                    <label> Compare Operators</label>
+                        <Dropdown placeholder='Metric Code'
+                        fluid
+                        selection
+                        options={metricCodeOptions}
+                        value={metricCode}
+                        onChange={(event, data) => {
+                            setMetricCode(data.value)
+                        }} />
+                    </Form.Field>
+
+                    <Form.Field>
+                    <label> Values</label>
+                        <Dropdown placeholder='Metric Code'
+                        fluid
+                        selection
+                        options={metricCodeOptions}
+                        value={metricCode}
+                        onChange={(event, data) => {
+                            setMetricCode(data.value)
+                        }} />
+                    </Form.Field>
+
                 </Form.Group>
             </Form>
 
-           
-
-          <Dropdown 
-                style={{ margin: '2em 0em' }}
-                placeholder='Hours'
-                fluid multiple selection
-                options={optionshours} />
+      
          
          <Button primary>Sumbit</Button>
 
