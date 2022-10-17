@@ -1,5 +1,5 @@
 import './App.css';
-import { Container, Dropdown, Form, Label, Segment, Grid,  Header, Button} from 'semantic-ui-react';
+import { Container, Dropdown, Form, Label, Segment, Grid,  Header, Button, Input, Table} from 'semantic-ui-react';
 import React, { useEffect, useState } from 'react';
 import { ReactDatez } from 'react-datez';
 import moment from "moment";
@@ -41,6 +41,16 @@ function App() {
       { key: 12, text: '5pm', value: 12 },
 
     ]
+    const compareOperators = [
+        { key: 1, text: '≤', value: 1 },
+        { key: 2, text: '<', value: 2 },
+        { key: 3, text: '=', value: 3 },
+        { key: 4, text: '>', value: 4 },
+        { key: 5, text: '≥', value: 5 },
+        
+
+      ]
+     
    
 
 
@@ -73,13 +83,17 @@ function App() {
         }
     });
 
+    //define a function
+    const handlesumbit = () => {
+    //not sure yet
+    }
+
       console.log(restaurantIds);
       console.log(metricCode);
 
   return (
+    
     <Container>
-
-     
       <Grid container style={{ padding: '2em 0em' }}>
         <Grid.Row>
           <Grid.Column>
@@ -92,7 +106,7 @@ function App() {
 
 
         <Segment>
-            <Form>
+            <Form onSubmit={handlesumbit}>
                 <Form.Field>
                     <Dropdown placeholder='Restaurant Ids'
                         fluid
@@ -174,37 +188,76 @@ function App() {
                     
                     <Form.Field>
                     <label> Compare Operators</label>
-                        <Dropdown placeholder='Metric Code'
+                        <Dropdown placeholder='Compare Operators'
                         fluid
                         selection
-                        options={metricCodeOptions}
-                        value={metricCode}
-                        onChange={(event, data) => {
-                            setMetricCode(data.value)
-                        }} />
+                        options={compareOperators}
+                     />
                     </Form.Field>
 
                     <Form.Field>
                     <label> Values</label>
-                        <Dropdown placeholder='Metric Code'
-                        fluid
-                        selection
-                        options={metricCodeOptions}
-                        value={metricCode}
-                        onChange={(event, data) => {
-                            setMetricCode(data.value)
-                        }} />
+                    <Input placeholder='Value' />
+                       
                     </Form.Field>
 
                 </Form.Group>
+                <Button type = "sumbit "  primary>Sumbit</Button>
             </Form>
+        </Segment>
 
-      
-         
-         <Button primary>Sumbit</Button>
+        <Segment>
+        <Table celled>
+                <Table.Header>
+                        <Table.Row>
+                            <Table.HeaderCell>
+                                Restaurant
+                            </Table.HeaderCell>
+                            <Table.HeaderCell>
+                                Business Date
+                            </Table.HeaderCell>
+                            <Table.HeaderCell>
+                                Order number
+                            </Table.HeaderCell>
+                            <Table.HeaderCell>
+                                Order time
+                            </Table.HeaderCell>
+                            {metricDefinitions.map(md => {
+                                return (<Table.HeaderCell>
+                                    {md.alias}
+                                </Table.HeaderCell>);
+                            })}
+                        </Table.Row>
+                </Table.Header>
+                <Table.Body>
+          
+                {/* <Table.Row> dynamic row
+                
+                        <Table.Cell>
+                        <Label ribbon>First</Label>
+                        </Table.Cell>
+                        <Table.Cell>Cell</Table.Cell>
+                        <Table.Cell>Cell</Table.Cell>
+                    </Table.Row>
+                    <Table.Row>
+                        <Table.Cell>Cell</Table.Cell>
+                        <Table.Cell>Cell</Table.Cell>
+                        <Table.Cell>Cell</Table.Cell>
+                    </Table.Row>
+                    <Table.Row>
+                        <Table.Cell>Cell</Table.Cell>
+                        <Table.Cell>Cell</Table.Cell>
+                        <Table.Cell>Cell</Table.Cell>
+                    </Table.Row> */}
+                
 
+                </Table.Body>
+            </Table>
 
         </Segment>
+
+
+
     </Container>
   );
 }
