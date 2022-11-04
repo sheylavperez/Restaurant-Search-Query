@@ -1,5 +1,5 @@
 import './App.css';
-import { Container, Dropdown, Form, Label,Pagination, Icon,Segment, Grid,  Header, Button, Input, Table} from 'semantic-ui-react';
+import { Container, Dropdown, Form,Pagination, Icon,Segment, Grid,  Header, Button, Input, Table} from 'semantic-ui-react';
 import React, { useEffect, useState } from 'react';
 import { ReactDatez } from 'react-datez';
 import moment from "moment";
@@ -424,13 +424,19 @@ function formatData(value, metricDefinition) {
     
     switch (metricDefinition.dataType) {
         case "Money":
-            formattedValue = `$${value.toFixed(metricDefinition.decimalPlace)}`;
+            formattedValue = `$${value.toFixed(metricDefinition.decimalPlaces)}`;
             break;
+
+            case "Percent":
+                formattedValue = `${(value * 100).toFixed(metricDefinition.decimalPlaces)}%`
+                break;
+            case "Number":
+                formattedValue = value.toFixed(metricDefinition.decimalPlaces)
+                break;
     
-        default:
-            formattedValue = value.toFixed(metricDefinition.decimalPlace);
-            break;
-    }
+            default:
+                break;
+        }
 
     return formattedValue;
 }
